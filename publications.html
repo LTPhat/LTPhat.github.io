@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications - Phat Lam</title>
+  <meta name="description" content="Selected publications by Phat Lam in signal processing, speech, audio analysis, and machine learning." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#172033",
+            sea: "#0f766e",
+            coral: "#dc6b4d",
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+          },
+          boxShadow: {
+            soft: "0 20px 55px rgba(15, 23, 42, 0.08)",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .publication-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .publication-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: #0f766e;
+    }
+
+    .publication-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(15, 118, 110, 0.35);
+      box-shadow: 0 18px 45px rgba(15, 118, 110, 0.14);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#eee9df] text-ink antialiased">
+  <header class="border-b border-stone-300/70 bg-[#eee9df]/90 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
+      <a href="index.html" class="text-sm font-extrabold tracking-tight text-sea hover:underline">
+        &lt;- Back
+      </a>
+      <a href="index.html" class="text-sm font-extrabold tracking-tight text-ink hover:text-sea">
+        Phat Lam
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-5 py-10 md:py-14">
+    <header class="mb-10 rounded-lg border border-stone-300/80 bg-[#f6f2e9] p-7 shadow-soft md:p-9">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Research</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight md:text-5xl">Publications</h1>
+      <!-- <p class="mt-4 max-w-2xl leading-7 text-slate-600">
+        Selected work across speech and audio processing, physiological signals, and efficient machine learning systems.
+      </p> -->
+    </header>
+
+    <div class="space-y-6">
+      <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/brn.png" alt="BandRouteNet publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-teal-50 text-teal-700">arXiv</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://arxiv.org/pdf/2604.24428" target="_blank" rel="noreferrer" class="hover:text-sea">
+                BandRouteNet: An Adaptive Band Routing Neural Network for EEG Artifact Removal
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500"><strong>Phat Lam</strong></p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              A low-complexity EEG artifact removal framework based on adaptive band-frequency routing.
+            </p>
+          </div>
+        </div>
+      </article>
+
+     <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/aud-sur.png" alt="Aud-Sur publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-rose-50 text-coral">LAC'25</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://hal.science/hal-05096011" target="_blank" rel="noreferrer" class="hover:text-sea">
+                Aud-Sur: An Audio Analyzer for Audio Surveillance Applications
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              <strong>Phat Lam</strong>, Lam Pham, Dat Tran, Alexander Schindler, Silvia Poletti, Marcel Hasenbalg, David Fischinger, Martin Boyer
+            </p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              An extensible LLM-powered multimodal audio assistant for comprehensive audio analysis in surveillance applications.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/sae.png" alt="Sparse autoencoder publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-teal-50 text-teal-700">SoICT'24</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://arxiv.org/pdf/2407.01963" target="_blank" rel="noreferrer" class="hover:text-sea">
+                Towards Unsupervised Speaker Diarization System for Multilingual Telephone Calls Using Pre-trained Whisper Model and Mixture of Sparse Autoencoders
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              <strong>Phat Lam</strong>, Lam Pham, Truong Nguyen, Dat Ngo, Thinh Pham, Tin Nguyen, Loi Khanh Nguyen, Alexander Schindler
+            </p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              An unsupervised multilingual speaker diarization system that uses Whisper-based speaker embeddings and sparse autoencoder mixtures for speaker clustering.
+            </p>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/lstm.png" alt="Aud-Sur publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-rose-50 text-coral">FedCSIS'24</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://hal.science/hal-05096011" target="_blank" rel="noreferrer" class="hover:text-sea">
+LSTM-based Deep Neural Network With A Focus on Sentence Representation for Sequential Sentence Classification in Medical Scientific Abstracts </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              <strong>Phat Lam</strong>, Lam Pham, Tin Nguyen, Hieu Tang, Michael Seidl, Medina Andresel, Alexander Schindler
+            </p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+A multi-branch LSTM-based framework that learns comprehensive sentence representations and contextual dependencies for sequential sentence classification in medical abstracts.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/din.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">EUSIPCO'25</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://ieeexplore.ieee.org/abstract/document/11226033/" target="_blank" rel="noreferrer" class="hover:text-sea">
+                DIN-CTS: Low-Complexity Depthwise-Inception Neural Network with Contrastive Training Strategy for Deepfake Speech Detection
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              Lam Pham, Dat Tran, <strong>Phat Lam</strong>, Florian Skopik, Alexander Schindler, Silvia Poletti, David Fischinger, Martin Boyer
+            </p>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              A low-complexity depthwise-inception network for deepfake speech detection, trained with a contrastive strategy.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/survey.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">Computer Science Review</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S1574013725000334" target="_blank" rel="noreferrer" class="hover:text-sea">
+              A Comprehensive Survey with Critical Analysis for Deepfake Speech Detection
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              Lam Pham*, <strong>Phat Lam</strong>*, Dat Tran, Hieu Tang, Tin Nguyen, Alexander Schindler, Florian Skopik, Alexander Polonsky, Hai Canh Vu
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+A comprehensive survey and critical analysis of deepfake speech detection, covering benchmark datasets, challenge competitions, deep-learning techniques, experimental validation, and promising future research directions.
+            </p>
+          </div>
+        </div>
+      </article>
+
+            <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/ensemble.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">IS2'24</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S1574013725000334" target="_blank" rel="noreferrer" class="hover:text-sea">
+            Deepfake Audio Detection Using Spectrogram-based Feature and Ensemble of Deep Learning Models
+              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+          Lam Pham*, <strong>Phat Lam</strong>*, Truong Nguyen, Huyen Nguyen, Alexander Schindler
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Developed an ensemble deep-learning framework for deepfake audio detection that combines diverse spectrogram features, CNN/transfer-learning models, and pretrained audio embeddings.
+            </p>
+          </div>
+        </div>
+      </article>
+
+            <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/im-freq.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">ISEE'25</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S1574013725000334" target="_blank" rel="noreferrer" class="hover:text-sea">
+The Impact of Frequency Bands on Acoustic Anomaly Detection of Machines Using Deep Learning-Based Model              </a>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+          Tin Nguyen, Hieu Tang, Lam Pham, <strong>Phat Lam </strong>, Dat Ngo, Canh Vu, Alexander Schindler, Son Phan, Truong Nguyen
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Investigated the impact of frequency-band selection on deep learning–based acoustic anomaly detection, showing that machine-specific spectral bands can substantially improve detection performance across industrial machine types.
+            </p>
+          </div>
+        </div>
+      </article>
+
+     <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/toolchain.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">CBMI'24</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10859210" target="_blank" rel="noreferrer" class="hover:text-sea">
+Toolchain for Comprehensive Audio/Video Analysis Using Deep Learning Based Multimodal Approach: Use Case of Riot or Violent Context Detection            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+              Lam Pham, Tin Nguyen, <strong>Phat Lam</strong>, Hieu Tang, Alexander Schindler
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+Developed a flexible, Dockerized multimodal toolchain that integrates deep-learning models for comprehensive audio–video analysis, including content summarization, clustering, and riot or violent-context detection.            </p>
+          </div>
+        </div>
+      </article>
+
+     <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+        <div class="flex flex-col gap-5 sm:flex-row">
+          <img src="images/teacher.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+          <div class="flex-1">
+            <span class="badge bg-indigo-50 text-indigo-700">IS2'23</span>
+            <h2 class="mt-3 text-lg font-bold leading-snug">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10335258/" target="_blank" rel="noreferrer" class="hover:text-sea">
+Light-Weight Deep Learning Models for Acoustic Scene Classification Using Teacher-Student Scheme and Multiple Spectrograms            
+            <p class="mt-2 text-sm text-slate-500">
+                  Lam Pham, Tin Nguyen, <strong>Phat Lam</strong>, Hieu Tang, Dat Ngo, Anahid Jalali, Alexander Schindler            
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              A light-weight deep learning based system for acoustic scene classification using teacher-student scheme.         
+              </p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+</body>
+</html>

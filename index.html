@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phat Lam</title>
+  <meta
+    name="description"
+    content="Phat Lam, MS student at the University of New Brunswick, researching signal processing, machine learning for time series, and multimodal learning."
+  />
+
+  <script>
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            ink: "#172033",
+            sea: "#0f766e",
+            coral: "#dc6b4d",
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+          },
+          boxShadow: {
+            soft: "0 24px 70px rgba(15, 23, 42, 0.10)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 999px;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 800;
+      color: inherit;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      border-radius: 999px;
+      background: #0f766e;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .publication-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .publication-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(15, 118, 110, 0.12);
+    }
+
+    nav a {
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -22px;
+      width: 0;
+      height: 2px;
+      background: #0f766e;
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #0f766e;
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f7f5ef] text-ink antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <header class="sticky top-0 z-50 border-b border-stone-200/80 bg-[#f7f5ef]/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+      <a href="#about" class="text-sm font-extrabold tracking-tight text-sea dark:text-teal-300">
+        Phat Lam
+      </a>
+
+      <nav class="hidden items-center gap-5 text-sm font-medium text-slate-600 dark:text-slate-400 md:flex">
+        <a href="#about" class="nav-link active">About</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#reviewing" class="nav-link">Academic Service</a>
+        <a href="#awards" class="nav-link">Awards</a>
+      </nav>
+
+      <button
+        id="theme-toggle"
+        class="flex h-10 w-10 items-center justify-center rounded-lg border border-stone-200 bg-white text-slate-700 shadow-sm transition hover:border-sea hover:text-sea dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+        aria-label="Toggle dark mode"
+      >
+        <i class="fas fa-moon hidden dark:inline"></i>
+        <i class="fas fa-sun dark:hidden"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-5 py-12 md:py-16">
+    <section id="about" class="grid gap-10 lg:grid-cols-[300px_1fr] lg:gap-14">
+      <aside class="rounded-lg border border-stone-200 bg-white p-6 shadow-soft dark:border-slate-800 dark:bg-slate-900/70">
+        <div class="mx-auto h-48 w-48 overflow-hidden rounded-full ring-4 ring-teal-50 dark:ring-slate-800">
+          <img src="images/avatar.png" alt="Portrait of Phat Lam" class="h-full w-full object-cover" />
+        </div>
+
+        <div class="mt-6 text-center">
+          <h1 class="text-3xl font-extrabold tracking-tight">Phat Lam</h1>
+          <p class="mt-3 text-base font-semibold text-sea dark:text-teal-300">
+            MS Student in Computer Science
+          </p>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            University of New Brunswick 
+          </p>
+        </div>
+
+        <div class="mt-5 flex flex-wrap justify-center gap-2">
+          <span class="badge bg-teal-50 text-teal-700 dark:bg-teal-950 dark:text-teal-200">Signal Processing</span>
+          <span class="badge bg-rose-50 text-coral dark:bg-rose-950 dark:text-rose-200">Time Series ML</span>
+          <span class="badge bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-200">Multimodal Learning</span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-medium text-slate-500 dark:text-slate-400">
+          <a href="mailto:phat.lam@unb.ca" class="rounded-lg border border-stone-200 bg-stone-50 p-3 transition hover:border-sea hover:text-sea dark:border-slate-800 dark:bg-slate-950">
+            <i class="fas fa-envelope block text-lg"></i>
+            <span class="mt-2 block">Email</span>
+          </a>
+          <a href="https://scholar.google.com/citations?user=5-2mq7IAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer" class="rounded-lg border border-stone-200 bg-stone-50 p-3 transition hover:border-sea hover:text-sea dark:border-slate-800 dark:bg-slate-950">
+            <i class="fas fa-graduation-cap block text-lg"></i>
+            <span class="mt-2 block">Scholar</span>
+          </a>
+          <a href="https://www.linkedin.com/in/phat-lam-13573a273/" target="_blank" rel="noreferrer" class="rounded-lg border border-stone-200 bg-stone-50 p-3 transition hover:border-sea hover:text-sea dark:border-slate-800 dark:bg-slate-950">
+            <i class="fab fa-linkedin block text-lg"></i>
+            <span class="mt-2 block">LinkedIn</span>
+          </a>
+        </div>
+      </aside>
+
+      <div class="space-y-8">
+        <div class="rounded-lg border border-stone-200 bg-white p-7 shadow-soft dark:border-slate-800 dark:bg-slate-900/70 md:p-9">
+          <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral dark:text-rose-300">
+            Bio
+          </p>
+          <!-- <h2 class="mt-3 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight md:text-4xl">
+            Researching reliable machine learning systems for physiological, audio, and time-series signals.
+          </h2> -->
+
+          <div class="mt-6 max-w-3xl space-y-5 text-[16px] leading-8 text-slate-700 dark:text-slate-300">
+            <p>
+              My name is Phat Lam. I graduated from Ho Chi Minh City University of Technology, Vietnam National University Ho Chi Minh City (VNU-HCM).
+            </p>
+            <p>
+              In January 2027, I will join the MS program in Computer Science at the University of New Brunswick (UNB), Canada, where I will work with
+              <a href="https://scholar.google.com/citations?user=mzg6VXYAAAAJ&hl=vi&oi=ao" target="_blank" rel="noreferrer" class="font-semibold text-sea hover:underline dark:text-teal-300">Prof. Hung Cao</a>
+              at the
+              <a href="https://www.cs.unb.ca/~hcao3/" target="_blank" rel="noreferrer" class="font-semibold text-sea hover:underline dark:text-teal-300">Analytics Everywhere Lab (AELab)</a>.
+            </p>
+            <p>
+              My research interests include signal processing, machine learning for time series, multimodal learning, speech and audio analysis, and physiological computing. I am especially interested in practical models that remain efficient, interpretable, and useful in real-world sensing environments.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+            <p class="text-2xl font-extrabold text-sea dark:text-teal-300">2027</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">MS student at UNB</p>
+          </div>
+          <div class="rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+            <p class="text-2xl font-extrabold text-coral dark:text-rose-300">AELab</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Analytics Everywhere Lab</p>
+          </div>
+          <div class="rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+            <p class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-300">ML</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Signals, speech, and sensing</p>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-stone-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900/70">
+          <h3 class="text-lg font-extrabold">News</h3>
+          <div class="mt-5 space-y-4">
+            <div class="grid gap-2 sm:grid-cols-[110px_1fr]">
+              <time class="text-sm font-bold text-sea dark:text-teal-300">Jan 2027</time>
+              <p class="text-sm leading-6 text-slate-700 dark:text-slate-300">
+                Will join the MS program in Computer Science at the University of New Brunswick, Canada.
+              </p>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-[110px_1fr]">
+              <time class="text-sm font-bold text-sea dark:text-teal-300">Nov 2025</time>
+              <p class="text-sm leading-6 text-slate-700 dark:text-slate-300">
+                Graduated from Ho Chi Minh City University of Technology, Vietnam National University Ho Chi Minh City.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="mt-24 reveal">
+      <div class="mb-7 flex items-center justify-between gap-4">
+        <h2 class="section-title">Selected Publications</h2>
+        <a href="publications.html" class="text-sm font-bold text-sea hover:underline dark:text-teal-300">
+          View all <span aria-hidden="true">-&gt;</span>
+        </a>
+      </div>
+
+      <div class="space-y-6">
+        <article class="publication-card rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+          <div class="flex flex-col gap-5 sm:flex-row">
+            <img src="images/sae.png" alt="Sparse autoencoder publication thumbnail" class="w-full rounded-lg border border-stone-200 object-cover sm:w-52 dark:border-slate-700" />
+            <div class="flex-1">
+              <span class="badge bg-teal-50 text-teal-700 dark:bg-teal-950 dark:text-teal-200">SoICT'24</span>
+              <h3 class="mt-3 text-lg font-bold leading-snug">
+                <a href="https://link.springer.com/chapter/10.1007/978-981-96-4282-3_4" target="_blank" rel="noreferrer" class="hover:text-sea dark:hover:text-teal-300">
+                  Towards Unsupervised Speaker Diarization System for Multilingual Telephone Calls Using Pre-trained Whisper Model and Mixture of Sparse Autoencoders
+                </a>
+              </h3>
+              <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                <strong>Phat Lam</strong>*, Lam Pham, Truong Nguyen, Dat Ngo, Thinh Pham, Tin Nguyen, Loi Khanh Nguyen, Alexander Schindler
+              </p>
+              <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                An unsupervised multilingual speaker diarization system using Whisper-based speaker embeddings and a mixture of sparse autoencoders for clustering without large-scale annotated data.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication-card rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+          <div class="flex flex-col gap-5 sm:flex-row">
+            <img src="images/aud-sur.png" alt="Aud-Sur publication thumbnail" class="w-full rounded-lg border border-stone-200 object-cover sm:w-52 dark:border-slate-700" />
+            <div class="flex-1">
+              <span class="badge bg-rose-50 text-coral dark:bg-rose-950 dark:text-rose-200">LAC'25</span>
+              <h3 class="mt-3 text-lg font-bold leading-snug">
+                <a href="https://hal.science/hal-05096011" target="_blank" rel="noreferrer" class="hover:text-sea dark:hover:text-teal-300">
+                  Aud-Sur: An Audio Analyzer for Audio Surveillance Applications
+                </a>
+              </h3>
+              <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                <strong>Phat Lam</strong>*, Lam Pham, Dat Tran, Alexander Schindler, Silvia Poletti, Marcel Hasenbalg, David Fischinger, Martin Boyer
+              </p>
+              <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                An extensible LLM-powered multimodal audio assistant for comprehensive audio analysis in surveillance applications.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="publication-card rounded-lg border border-stone-300 bg-[#fbf8f0] p-5 pl-6 shadow-sm">
+                <div class="flex flex-col gap-5 sm:flex-row">
+                  <img src="images/survey.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-300 bg-white object-cover sm:w-52" />
+                  <div class="flex-1">
+                    <span class="badge bg-indigo-50 text-indigo-700">Computer Science Review</span>
+                    <h2 class="mt-3 text-lg font-bold leading-snug">
+                      <a href="https://www.sciencedirect.com/science/article/abs/pii/S1574013725000334" target="_blank" rel="noreferrer" class="hover:text-sea">
+                      A Comprehensive Survey with Critical Analysis for Deepfake Speech Detection
+                      </a>
+                    </h2>
+                    <p class="mt-2 text-sm text-slate-500">
+                      Lam Pham*, <strong>Phat Lam</strong>*, Dat Tran, Hieu Tang, Tin Nguyen, Alexander Schindler, Florian Skopik, Alexander Polonsky, Hai Canh Vu
+                    <p class="mt-3 text-sm leading-6 text-slate-600">
+        A comprehensive survey and critical analysis of deepfake speech detection, covering benchmark datasets, challenge competitions, deep-learning techniques, experimental validation, and promising future research directions.
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+        <article class="publication-card rounded-lg border border-stone-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/70">
+          <div class="flex flex-col gap-5 sm:flex-row">
+            <img src="images/din.png" alt="DIN-CTS publication thumbnail" class="w-full rounded-lg border border-stone-200 object-cover sm:w-52 dark:border-slate-700" />
+            <div class="flex-1">
+              <span class="badge bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-200">EUSIPCO'25</span>
+              <h3 class="mt-3 text-lg font-bold leading-snug">
+                <a href="https://ieeexplore.ieee.org/abstract/document/11226033/" target="_blank" rel="noreferrer" class="hover:text-sea dark:hover:text-teal-300">
+                  DIN-CTS: Low-Complexity Depthwise-Inception Neural Network with Contrastive Training Strategy for Deepfake Speech Detection
+                </a>
+              </h3>
+              <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                Lam Pham, Dat Tran, <strong>Phat Lam</strong>, Florian Skopik, Alexander Schindler, Silvia Poletti, David Fischinger, Martin Boyer
+              </p>
+              <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                A low-complexity depthwise-inception network for deepfake speech detection, trained with a three-phase contrastive strategy.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="mt-24 reveal">
+      <h2 class="section-title mb-8">Experience</h2>
+      <div class="space-y-9">
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">May 2025 - Dec 2026</div>
+          <div>
+            <h3 class="font-bold">Machine Learning Engineer / Signal Processing Engineer · BrainLife JSC</h3>
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              <li>Developed machine learning and deep learning models for mental state classification and cognitive workload assessment using EEG, fNIRS, and PPG signals.</li>
+              <li>Implemented physiological signal preprocessing pipelines, including denoising, motion artifact reduction, baseline normalization, and quality control.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">Feb 2025 - Apr 2025</div>
+          <div>
+            <h3 class="font-bold">AI Engineer · ITR VN</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Designed and implemented deep learning models for R-peak detection and noise identification in ECG signals.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">Jan 2024 - Aug 2025</div>
+          <div>
+            <h3 class="font-bold">Research Assistant · Remote European Projects</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Conducted research on audio and speech processing, including deepfake speech detection, speaker diarization, automatic speech recognition, acoustic scene classification, and industrial acoustic anomaly detection.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">Sep 2022 - Oct 2023</div>
+          <div>
+            <h3 class="font-bold">Research Member · Machine Learning IoT Lab, Ho Chi Minh City University of Technology</h3>
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              <li>Researched sequential sentence classification for document understanding using deep learning and natural language processing.</li>
+              <li>Worked on semantic segmentation, including data preprocessing, model training, evaluation, and performance analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="mt-24 reveal">
+      <h2 class="section-title mb-8">Education</h2>
+      <div class="space-y-8">
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">Jan 2027 - Present</div>
+          <div>
+            <h3 class="font-bold">MS in Computer Science</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">University of New Brunswick, New Brunswick, Canada</p>
+          </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="text-sm font-semibold text-slate-500">Oct 2021 - Nov 2025</div>
+          <div>
+            <h3 class="font-bold">BS in Electronics and Telecommunications Engineering</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">Ho Chi Minh City University of Technology, Vietnam National University Ho Chi Minh City, Vietnam</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviewing" class="mt-24 reveal">
+      <h2 class="section-title mb-8">Academic Service</h2>
+      <p class="text-slate-700 dark:text-slate-300">Reviewer: Knowledge-Based Systems Journal</p>
+    </section>
+
+    <section id="awards" class="mt-24 reveal">
+      <h2 class="section-title mb-8">Honors & Awards</h2>
+      <div class="space-y-4 text-sm">
+        <div class="grid grid-cols-[92px_1fr] gap-4">
+          <span class="font-semibold text-slate-500">2026</span>
+          <span>UNB Research Scholarship for International Students</span>
+        </div>
+        <div class="grid grid-cols-[92px_1fr] gap-4">
+          <span class="font-semibold text-slate-500">2025</span>
+          <span>EVN Scholarship</span>
+        </div>
+        <div class="grid grid-cols-[92px_1fr] gap-4">
+          <span class="font-semibold text-slate-500">2021 - 2025</span>
+          <span>Encouraging Study Scholarship of Ho Chi Minh City University of Technology</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-24 border-t border-stone-200 dark:border-slate-800">
+    <div class="mx-auto max-w-6xl px-5 py-8 text-center text-sm text-slate-500">
+      © 2026 Phat Lam
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      localStorage.theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+    });
+  </script>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+
+  <script>
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "about";
+
+      sections.forEach((section) => {
+        if (scrollY >= section.offsetTop - 120) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      });
+    });
+  </script>
+</body>
+</html>
